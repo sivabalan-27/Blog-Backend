@@ -19,8 +19,13 @@ const normalizeOrigin = (val) => {
     return val.replace(/\/+$/, "").toLowerCase(); // remove trailing slash
   }
 };
+ 
+//{const rawOrigins = (process.env.ALLOWED_ORIGINS || process.env.FRONTEND_URL || "")}
 
-const rawOrigins = (process.env.ALLOWED_ORIGINS || process.env.FRONTEND_URL || "")
+const rawOrigins = (
+  process.env.ALLOWED_ORIGINS ||
+  `${process.env.FRONTEND_URL || ""},${process.env.FRONTEND_URL2 || ""}`
+)
   .split(",")
   .map((s) => s.trim())
   .filter(Boolean);
